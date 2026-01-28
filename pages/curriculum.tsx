@@ -43,7 +43,7 @@ export default function Curriculum() {
     },
     { 
       date: '6월 ~ 8월', 
-      title: 'Bridge to PRO', 
+      title: 'Bridge to PRO:Ideathon', 
       desc: '방학 기간 동안 기획 역량 발전에 집중하는  Ideathon이 진행됩니다.', 
       isHighlight: false 
     },
