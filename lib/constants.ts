@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-export const SITE_URL = 'https://AiEYES.vercel.app';
+export const SITE_URL = 'https://2026-aieyes.vercel.app';
+export const OG_IMAGE = '/로고.png'
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin;
-export const TWITTER_USER_NAME = 'vercel';
+export const TWITTER_USER_NAME = 'AiEYES';
 export const BRAND_NAME = 'AiEYES';
 export const SITE_NAME = 'AiEYES';
 export const SITE_NAME_MULTILINE = 'AiEYES';

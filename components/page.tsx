@@ -18,7 +18,7 @@ import cn from 'classnames';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { SITE_NAME, SITE_URL, TWITTER_USER_NAME } from '@lib/constants';
+import { SITE_NAME, SITE_URL, TWITTER_USER_NAME, OG_IMAGE } from '@lib/constants';
 
 type Meta = {
   title: string | null;
@@ -55,6 +55,8 @@ export default function Page({ meta, children, fullViewport = false }: Props) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <meta property="og:image" content={OG_IMAGE} />
+
         <link
           rel="preload"
           href="https://assets.vercel.com/raw/upload/v1587415301/fonts/2/inter-var-latin.woff2"
