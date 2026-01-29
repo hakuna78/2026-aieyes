@@ -120,7 +120,7 @@ export default function Recruiting() {
             <div style={glassBoxStyle}>
               <h3>지원 자격</h3>
               <ul>
-                <li>한국외대 Social Science & AI 융합학부 1전공 혹은 이중(부)전공 학생</li>
+                <li>한국외대 Social Science & AI융합학부 1전공 혹은 이중(부)전공 학생</li>
                 <li>최소 활동기간 1년(2026.03 ~2027.02)을 충족할 수 있는 분</li>
                 <li>매주 정기회의(화 18:30~20:00)를 포함해 주 2회 이상 학회 활동이 가능하신 분</li>
               </ul>
