@@ -115,7 +115,7 @@ export default function Curriculum() {
             <div style={subCardGridStyle}>
               <div style={subCardStyle}>
                 <h4 style={subCardTitleStyle}>제로 AI</h4>
-                <p style={subCardDescStyle}>랜덤으로 뽑은 두 가지 키워드를 결합하여 아이디어를 발굴합니다. '무'에서 '유'를 창조하는 기획력을 기릅니다.</p>
+                <p style={subCardDescStyle}>랜덤으로 뽑은 두 가지 키워드를 결합하여 AI툴 사용 없이 아이디어를 발굴합니다. '무'에서 '유'를 창조하는 기획력을 기릅니다.</p>
                 <div style={tagWrapperStyle}>
                   <span style={tagStyle}>아이디어 발굴</span>
                   <span style={tagStyle}>창의적 기획</span>
