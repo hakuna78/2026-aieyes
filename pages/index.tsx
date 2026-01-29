@@ -71,7 +71,7 @@ export default function Conf() {
           
           <div style ={{marginTop: '70px', marginBottom: '100px'}}>
             <p style={{ fontSize: '1.1rem', fontWeight: '400', opacity: '0.7', marginBottom: '60px', lineHeight:'1.8', letterSpacing:'-0.5px'}}>
-              AiEYES는 한국외국어대학교 Social Science & AI융합학부의 딥러닝학회입니다.<br/>
+              AiEYES는 한국외국어대학교 Social Science & AI융합학부의 인공지능학회입니다.<br/>
               기존의 관습과 고정관념을 내려놓는 언러닝(Unlearning)으로<br/>
               AI와 사회를 잇는 새로운 시각을 탐구합니다.<br/>
 

@@ -42,23 +42,8 @@ export default function Activities() {
           </p>
         </header>
 
-        {/* 섹션 1. 스터디 */}
-        <section style={sectionWrapperStyle}>
-          <h2 style={sectionLabelStyle}>📌 정규 스터디 활동</h2>
-          <div style={mainSectionStyle}>
-            <img src="/스터디.jpg" alt="정규스터디" style={mainImageStyle} />
-          </div>
-        </section>
 
-        {/* 섹션 2. 학술 박람회 */}
-        <section style={sectionWrapperStyle}>
-          <h2 style={sectionLabelStyle}>📌 학술 박람회</h2>
-          <div style={mainSectionStyle}>
-            <img src="/단체.png" alt="학술 박람회" style={mainImageStyle} />
-          </div>
-        </section>
-
-        {/* 섹션 3. 활동 자료 (포스터 그리드) */}
+        {/* 활동 자료 (포스터 그리드) */}
         <section style={sectionWrapperStyle}>
           <h2 style={sectionLabelStyle}>📌 프로젝트 자료</h2>
           <div style={gridContainerStyle}>
@@ -94,6 +79,22 @@ export default function Activities() {
         </section>
       </div>
 
+      {/* 포스터 */}
+      <section style={sectionWrapperStyle}>
+          <h2 style={sectionLabelStyle}>📌 정규 스터디 활동</h2>
+          <div style={mainSectionStyle}>
+            <img src="/스터디.jpg" alt="정규스터디" style={mainImageStyle} />
+          </div>
+        </section>
+
+        {/* 학술 박람회 */}
+        <section style={sectionWrapperStyle}>
+          <h2 style={sectionLabelStyle}>📌 학술 박람회</h2>
+          <div style={mainSectionStyle}>
+            <img src="/단체.png" alt="학술 박람회" style={mainImageStyle} />
+          </div>
+        </section>
+
       {/* 모달 섹션 */}
       {selectedPoster && (
         <div style={modalOverlayStyle} onClick={() => setSelectedPoster(null)}>
@@ -120,15 +121,16 @@ const headerSectionStyle: React.CSSProperties = { textAlign: 'center', marginBot
 const titleStyle: React.CSSProperties = { fontSize: '48px', fontWeight: '700', marginBottom: '20px' };
 const subtitleStyle: React.CSSProperties = { fontSize: '1.1rem', opacity: 0.7 };
 
-const sectionWrapperStyle: React.CSSProperties = { width: '100%', maxWidth: '1100px', marginBottom: '100px' };
+const sectionWrapperStyle: React.CSSProperties = { width: '100%', maxWidth: '1100px', marginBottom: '100px', margin:'0 auto 100px auto' };
 const sectionLabelStyle: React.CSSProperties = { fontSize: '1.5rem', fontWeight: '700', marginBottom: '25px', color: '#fff' };
 
 const mainSectionStyle: React.CSSProperties = {
   width: '100%', height: '400px', borderRadius: '24px', overflow: 'hidden',
-  border: '1px solid rgba(255,255,255,0.1)', backgroundColor: '#111', marginBottom: '20px'
+  border: '1px solid rgba(255,255,255,0.1)', backgroundColor: '#111', marginBottom: '20px',
+  display:'flex', justifyContent:'center', alignItems:'center', margin:"0 auto"
 };
 
-const mainImageStyle: React.CSSProperties = { width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 };
+const mainImageStyle: React.CSSProperties = { width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8, display:'flex', justifyContent:'center', alignItems:'center' };
 
 const gridContainerStyle: React.CSSProperties = {
   display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',

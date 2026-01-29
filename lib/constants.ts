@@ -57,7 +57,7 @@ export const NAVIGATION = [
     route: '/curriculum'
   },
   {
-    name: 'FaQ',
+    name: 'FAQ',
     route: '/faq'
   }
 ];

@@ -67,7 +67,7 @@ export default function Curriculum() {
           AiEYES의 커리큘럼은 <b>CORE Term</b>, <b>Bridge to PRO</b>, <b>PRO Term</b>을 거쳐 총 1년 과정으로 진행됩니다. <br/>1년 과정을 완수 시 AiEYES 수료가 가능합니다.
         </p>
 
-        {/* 상세 카드 그리드 - 기존 텍스트 완벽 복구 */}
+        
         <div style={cardGridStyle}>
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
             <h2 style={{ fontSize: '30px', fontWeight: '800' }}>세션 구성</h2>
