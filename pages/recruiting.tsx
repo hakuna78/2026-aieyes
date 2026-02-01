@@ -218,7 +218,7 @@ export default function Recruiting() {
 
         {/* 지원폼은 여기에 */}
         <footer style={contactStyle}> 
-          <button style={applyButtonStyle} onClick={() => window.open('지원폼_링크')}>
+          <button style={applyButtonStyle} onClick={() => window.open('https://forms.gle/pHi1KhMgCpaETtdeA')}>
             지금 지원하기 ▶
           </button>
           <p style={{ marginTop: '40px' , color:'rgba(255,255,255,0.4)'}}>문의처: 학회장 김지현(010-5034-9789) | 부학회장 노윤혁(010-2722-1378)</p>
