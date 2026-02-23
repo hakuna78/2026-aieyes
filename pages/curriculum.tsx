@@ -13,7 +13,7 @@ export default function Curriculum() {
       date: '2월 21일 (토)', 
       title: '재학생 서류 합격 발표', 
       desc: '서류 합격자 대상 개별 연락 및 면접 안내가 진행됩니다.', 
-      isHighlight: false 
+      isHighlight: true
     },
     { 
       date: ' 2월 23일 (월) ~ 3월 1일 (일) 23:59', 
@@ -32,7 +32,7 @@ export default function Curriculum() {
       isSplit: true, 
       details: [
         { label: '재학생', schedule: '면접: 2월 25일 (수) ~ 2월 26일 (목) | 최종 발표: 2월 27일 (금)' },
-        { label: '신입생', schedule: '면접: 3월 5일 (목) | 최종 발표: 3월 6일 (금)' }
+        { label: '신입생', schedule: '면접: 3월 4일 (수) | 최종 발표: 3월 8일 (일)' }
       ]
     },
     { 

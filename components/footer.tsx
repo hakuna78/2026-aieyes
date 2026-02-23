@@ -8,8 +8,8 @@ export default function Footer() {
       style={{ 
        
         backgroundColor: '#000', 
-        padding: '80px 40px 60px 40px', // 상단 패딩을 늘려 선을 콘텐츠보다 위로 올림
-        marginTop: '100px' // 페이지 본문과의 간격 확보
+        padding: '80px 40px 60px 40px', 
+        marginTop: '100px' 
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'left' }}>

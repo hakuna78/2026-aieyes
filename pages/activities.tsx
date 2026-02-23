@@ -7,26 +7,26 @@ export default function Activities() {
 
   const teams = [
     { 
-      name: "Team Mind&Mood", 
-      title: "AI_DJ_Curating the Moment", 
+      title: "Team Mind&Mood", 
+      name: "CLIP모델 기반 사용자 감정 최적화 음악 추천 서비스 ", 
       link: "https://youtu.be/pEmTiWlbnJI?si=vIahb20Q2XRMiG6W",
       poster: "/team mm.pdf" 
     },
     { 
-      name: "Team 콕", 
-      title: "전문가의 노하우를 학습하는 AI", 
+      title: "Team 콕", 
+      name: "Synthetic Phase-Shifting기반 DPO기법 활용 상담 AI", 
       link: "https://youtu.be/SM93h0spbR4?si=uwWQxMsqBe4CZTBF",
       poster: "/team콕.pdf" 
     },
     { 
-      name: "Team soul", 
-      title: "서울시 상권 침체 조기경보 지수", 
+      title: "Team soul", 
+      name: "서울특별시 상권 침체 조기경보 지수 형성 시스템", 
       link: "https://youtu.be/uyqboNJdHJI?si=FbSsm86WtTvIy5SM",
       poster: "/team 소울.pdf" 
     },
     { 
-      name: "Team SHAP", 
-      title: "금융 시계열 예측", 
+      title: "Team SHAP", 
+      name: "SHAP모델 기반 멀티모달 주가 예측 분석", 
       poster: "/team ai팀.pdf" 
     },
   ];

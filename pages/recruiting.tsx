@@ -60,14 +60,14 @@ export default function Recruiting() {
                 label: "면접",
                 details: [
                   { target: "재학생", period: "2월 25일 (수) ~ 2월 26일 (목)" },
-                  { target: "신입생", period: "3월 5일 (목)" }
+                  { target: "신입생", period: "3월 4일 (수)" }
                 ]
               },
               {
                 label: "최종 결과 발표",
                 details: [
                   { target: "재학생", period: "2월 27일 (금)" },
-                  { target: "신입생", period: "3월 6일 (금)" }
+                  { target: "신입생", period: "3월 8일 (일)" }
                 ]
               }
             ].map((item, idx) => (
@@ -218,7 +218,7 @@ export default function Recruiting() {
 
         {/* 지원폼은 여기에 */}
         <footer style={contactStyle}> 
-          <button style={applyButtonStyle} onClick={() => window.open('https://forms.gle/pHi1KhMgCpaETtdeA')}>
+          <button style={applyButtonStyle} onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd2ajSKTh7DyQqAhm0PXdz37U2lokn4mUgRZNFbt9tpC2eEsg/viewform?usp=header')}>
             지금 지원하기 ▶
           </button>
           <p style={{ marginTop: '40px' , color:'rgba(255,255,255,0.4)'}}>문의처: 학회장 김지현(010-5034-9789) | 부학회장 노윤혁(010-2722-1378)</p>
