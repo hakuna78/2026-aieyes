@@ -19,16 +19,17 @@ export default function Curriculum() {
       date: ' 2월 23일 (월) ~ 3월 1일 (일) 23:59', 
       title: '신입생 서류 접수', 
       desc: '지원서는 제출 후 수정이 불가합니다.', 
-      isHighlight: false 
+      isHighlight: true 
     },
     { 
       date: ' 3월 3일 (화)', 
       title: '신입생 서류 합격 발표', 
       desc: '서류 합격자 대상 개별 연락 및 면접 안내가 진행됩니다.',
-      isHighlight: false 
+      isHighlight: true 
     },
     { 
       title: '면접 및 결과 발표', 
+      isHighlight : true,
       isSplit: true, 
       details: [
         { label: '재학생', schedule: '면접: 2월 25일 (수) ~ 2월 26일 (목) | 최종 발표: 2월 27일 (금)' },
@@ -39,7 +40,7 @@ export default function Curriculum() {
       date: '3월 초 ~ 5월', 
       title: 'CORE Term', 
       desc: '분야별 스터디 및 정기 세션이 시작됩니다.', 
-      isHighlight: false 
+      isHighlight: true
     },
     { 
       date: '6월 ~ 8월', 
