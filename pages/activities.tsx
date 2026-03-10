@@ -31,6 +31,8 @@ export default function Activities() {
     },
   ];
 
+  
+
   return (
     <Layout>
       <div style={containerStyle}>

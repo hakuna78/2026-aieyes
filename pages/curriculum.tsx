@@ -256,6 +256,7 @@ const sectionContainerStyle: React.CSSProperties = {
   display: 'flex', flexDirection: 'column', alignItems: 'center'
 };
 
+
 const sectionHeaderStyle: React.CSSProperties = { textAlign: 'center', marginBottom: '8px' };
 const sectionTitleStyle: React.CSSProperties = { fontSize: '48px', fontWeight: '900', marginBottom: '5px', lineHeight: '1.6' };
 const descriptionStyle: React.CSSProperties = { fontSize: '1.1rem', opacity: 0.8, textAlign: 'center' };
