@@ -19,6 +19,7 @@ const membersData: any = {
     { name: "박수연", dept: "Social Science & AI융합학부 25" }
   ],
   "2nd Generation": [
+<<<<<<< HEAD
     { name: "류의태", dept: "Social Science & AI융합학부 24" },
     { name: "류희수", dept: "Social Science & AI융합학부 25" },
     { name: "박선우", dept: "Social Science & AI융합학부 25" },
@@ -26,6 +27,9 @@ const membersData: any = {
     { name: "이명진", dept: "Social Science & AI융합학부 25" },
     { name: "윤성제", dept: "Social Science & AI융합학부 24" },
     { name: "진미경", dept: "Social Science & AI융합학부 26" }
+=======
+    { name: "준비 중", dept: "Upcoming" },
+>>>>>>> b96f22ad500c12deebeaf8441a45cfe2d3db9cef
   ]
 };
 
