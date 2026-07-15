@@ -50,8 +50,9 @@ export default function Members() {
               onClick={() => setSelectedGen(gen)}
               style={{
                 ...tabButtonStyle,
-                backgroundColor: selectedGen === gen ? '#fff' : '#222',
-                color: selectedGen === gen ? '#000' : '#fff',
+                backgroundColor: selectedGen === gen ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.05)',
+                color: '#fff',
+                border: selectedGen === gen ? '1px solid rgba(255, 255, 255, 0.4)' : '1px solid rgba(255, 255, 255, 0.15)',
               }}
             >
               {gen}
@@ -84,7 +85,15 @@ const subtitleStyle: React.CSSProperties = { fontSize: '1.1rem', opacity: 0.8, l
 
 // 기수 선택 탭
 const tabContainerStyle: React.CSSProperties = { display: 'flex', gap: '10px', marginBottom: '60px' };
-const tabButtonStyle: React.CSSProperties = { padding: '10px 25px', borderRadius: '50px', border: 'none', cursor: 'pointer', fontWeight: '600', transition: '0.3s' };
+const tabButtonStyle: React.CSSProperties = { 
+  padding: '12px 30px', 
+  borderRadius: '50px', 
+  cursor: 'pointer', 
+  fontWeight: '600', 
+  transition: 'all 0.3s ease',
+  backdropFilter: 'blur(8px)',
+  fontSize: '1rem'
+};
 
 // 멤버 그리드
 const sectionWrapperStyle: React.CSSProperties = { width: '100%', maxWidth: '1000px', marginBottom: '100px' };

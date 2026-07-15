@@ -1,58 +1,50 @@
+
 import Layout from '@components/layout';
 import React from 'react';
 
 export default function Curriculum() {
   const scheduleData = [
     { 
-      date: '2월 2일 (월) ~ 2월 15일 (일) 23:59', 
       title: '재학생 서류 접수', 
       desc: '지원서는 제출 후 수정이 불가합니다.', 
       isHighlight: true 
     },
     { 
-      date: '2월 21일 (토)', 
       title: '재학생 서류 합격 발표', 
       desc: '서류 합격자 대상 개별 연락 및 면접 안내가 진행됩니다.', 
       isHighlight: true
     },
     { 
-      date: ' 2월 23일 (월) ~ 3월 1일 (일) 23:59', 
       title: '신입생 서류 접수', 
       desc: '지원서는 제출 후 수정이 불가합니다.', 
       isHighlight: true 
     },
     { 
-      date: ' 3월 3일 (화)', 
       title: '신입생 서류 합격 발표', 
       desc: '서류 합격자 대상 개별 연락 및 면접 안내가 진행됩니다.',
       isHighlight: true 
     },
     { 
       title: '면접 및 결과 발표', 
-      isHighlight : true,
-      isSplit: true, 
-      details: [
-        { label: '재학생', schedule: '면접: 2월 25일 (수) ~ 2월 26일 (목) | 최종 발표: 2월 27일 (금)' },
-        { label: '신입생', schedule: '면접: 3월 4일 (수) | 최종 발표: 3월 8일 (일)' }
-      ]
+      isHighlight : true
     },
     { 
-      date: '3월 초 ~ 5월', 
       title: 'CORE Term', 
       desc: '분야별 스터디 및 정기 세션이 시작됩니다.', 
-      isHighlight: true
+      isHighlight: true,
+      isGlowing: true
     },
     { 
-      date: '6월 ~ 8월', 
       title: 'Bridge to PRO:Ideathon', 
-      desc: '방학 기간 동안 기획 역량 발전에 집중하는  Ideathon이 진행됩니다.', 
-      isHighlight: false 
+      desc: '방학 기간 동안 기획 역량 발전에 집중하는 Ideathon이 진행됩니다.', 
+      isHighlight: false,
+      isGlowing: true
     },
     { 
-      date: '9월 초 ~ 12월', 
       title: 'PRO Term', 
       desc: '그동안 학습한 내용을 프로젝트에 직접 적용합니다.', 
-      isHighlight: false 
+      isHighlight: false,
+      isGlowing: true
     },
   ];
 
@@ -168,77 +160,37 @@ export default function Curriculum() {
         </div>
 
         {/* --- 통합 일정 타임라인 섹션 --- */}
-        <div style={{ marginTop: '160px', width: '100%', maxWidth: '800px' }}>
+        <div style={{ marginTop: '160px', width: '100%', maxWidth: '900px' }}>
           <h2 style={{ ...sectionTitleStyle, fontSize: '30px', textAlign: 'center', marginBottom: '60px' }}>
             전체 일정
           </h2>
           
           <div style={timelineWrapperStyle}>
-            <div style={verticalLineStyle} />
+            {/* 가운데 그라데이션 점선 */}
+            <div style={{
+              position: 'absolute',
+              top: '40px',
+              bottom: '40px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '2px',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 20%, rgba(255,255,255,0.6) 80%, rgba(255,255,255,0) 100%)',
+              maskImage: 'linear-gradient(to bottom, #000 50%, transparent 50%)',
+              maskSize: '100% 16px',
+              WebkitMaskImage: 'linear-gradient(to bottom, #000 50%, transparent 50%)',
+              WebkitMaskSize: '100% 16px',
+              zIndex: 0
+            }} />
 
             {scheduleData.map((item, index) => (
-              <div key={index} style={itemWrapperStyle}>
-                <div style={{
-                  ...dotStyle,
-                  backgroundColor: item.isHighlight ? '#6832bb' : '#1a1a1e',
-                  border: item.isHighlight ? 'none' : '1px solid rgba(255,255,255,0.2)',
-                  marginTop:'30px',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'center',
-                  zIndex:2
-                }}>
-                  {item.isHighlight && <span style={{ color: '#fff', fontSize: '14px' }}>✔</span>}
-                </div>
-
+              <div key={index} style={{ ...itemWrapperStyle, position: 'relative', zIndex: 1 }}>
                 <div style={{
                   ...scheduleCardStyle,
-                  border: item.isHighlight ? '1px solid #6832bb' : '1px solid rgba(255,255,255,0.08)', padding:'25px', flex:1
+                  boxShadow: item.isGlowing ? '0 0 25px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2)' : scheduleCardStyle.boxShadow,
+                  borderColor: item.isGlowing ? '#fff' : 'rgba(255, 255, 255, 0.4)'
                 }}>
-                  <div style={{
-                    display :'flex',
-                    justifyContent:'space-between',
-                    alignItems:'flex-start',
-                    flexDirection:'row'
-                  }}></div>
-                  <div style={scheduleHeaderStyle}>
-                    <span style={{ 
-                      fontSize: '0.9rem', 
-                      fontWeight: '500', 
-                      color: item.isHighlight ? '#6832bb' : '#ffffff', 
-                      textAlign:'right',
-                      minWidth:'100px',
-                      display:'inline-block',
-                      lineHeight:'1',
-                      marginTop:'0px'
-                    }}>
-                      {item.date}
-                    </span>
-                    {!item.isSplit && <h3 style={{ fontSize: '1rem', fontWeight: '600', margin: 0 ,textAlign:'left', lineHeight:'1.2', color: item.isHighlight ? '#6832bb' : '#ffffff'}}>{item.title}</h3>}
-                  </div>
-
-                  {/* 재학생, 신입생 섹션 */}
-                  {!item.isSplit ? (
-                    <p style={scheduleDescStyle}>{item.desc}</p>
-                  ) : (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      <h3 style={{ fontSize: '1rem', fontWeight: '600', margin: '0',marginTop:'-10px' }}>{item.title}</h3>
-                      {item.details?.map((detail, idx) => (
-                        
-                        <div key={idx} style={{
-                          display:'flex',
-                          alignItems:'center',
-                          gap:'12px',
-                          padding:'12px 15px',
-                          backgroundColor: 'rgba(255,255,255,0.03)',
-                          borderRadius: '12px'
-                        }}>
-                          <span style={splitBadgeStyle}>{detail.label}</span>
-                          <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)' }}>{detail.schedule}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 8px 0', color: '#fff'}}>{item.title}</h3>
+                  {item.desc && <p style={scheduleDescStyle}>{item.desc}</p>}
                 </div>
               </div>
             ))}
@@ -266,7 +218,8 @@ const cardGridStyle: React.CSSProperties = {
 };
 
 const cardStyle: React.CSSProperties = {
-  backgroundColor: '#16161a', border: '1px solid rgba(255, 255, 255, 0.1)',
+  backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.15)', backdropFilter: 'saturate(180%) blur(24px)',
+  boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3)',
   borderRadius: '24px', padding: '35px', display: 'flex', flexDirection: 'column', gap: '20px', boxSizing: 'border-box'
 };
 
@@ -278,7 +231,8 @@ const subCardGridStyle: React.CSSProperties = {
 };
 
 const subCardStyle: React.CSSProperties = {
-  backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)',
+  backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'saturate(180%) blur(20px)',
+  boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.05)',
   borderRadius: '16px', padding: '25px', display: 'flex', flexDirection: 'column', height: '100%', gap: '15px'
 };
 
@@ -290,12 +244,20 @@ const tagStyle: React.CSSProperties = {
   fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.5)', border: '1px solid rgba(255, 255, 255, 0.05)'
 };
 
-const timelineWrapperStyle: React.CSSProperties = { position: 'relative', display: 'flex', flexDirection: 'column', gap: '40px', width: '100%' };
-const verticalLineStyle: React.CSSProperties = { position: 'absolute', left: '20px', top: '10px', bottom: '10px', width: '1px', backgroundColor: 'rgba(255, 255, 255, 0.1)' };
-const itemWrapperStyle: React.CSSProperties = { display: 'flex', gap: '25px', position: 'relative', zIndex: 1 };
-const dotStyle: React.CSSProperties = { width: '40px', height: '40px', borderRadius: '50%',  flexShrink: 0, position:'relative',zIndex:2, transform:'translateY(5px)'};
-const scheduleCardStyle: React.CSSProperties = { flex: 1, backgroundColor: '#111', borderRadius: '20px', padding: '25px', display: 'flex', flexDirection: 'column', gap: '10px' };
-const scheduleHeaderStyle: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' , flexDirection:'row-reverse'};
+const timelineWrapperStyle: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '30px', width: '100%', alignItems: 'center', position: 'relative' };
+const itemWrapperStyle: React.CSSProperties = { display: 'flex', justifyContent: 'center', width: '100%' };
+const scheduleCardStyle: React.CSSProperties = { 
+  width: '100%', maxWidth: '800px', 
+  backgroundColor: 'rgba(255, 255, 255, 0.05)', 
+  backdropFilter: 'saturate(180%) blur(24px)', 
+  borderRadius: '24px', 
+  padding: '35px 40px', 
+  display: 'flex', 
+  flexDirection: 'column', 
+  justifyContent: 'center', 
+  border: '1px solid rgba(255, 255, 255, 0.4)', 
+  boxShadow: '0 8px 32px rgba(0,0,0,0.2)' 
+};
 const scheduleDescStyle: React.CSSProperties = { fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.5)', margin: 0, lineHeight: '1.6', wordBreak: 'keep-all' };
 const splitDetailStyle: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 15px', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '12px' };
 const splitBadgeStyle: React.CSSProperties = { fontSize: '0.75rem', fontWeight: '800', padding: '4px 8px', borderRadius: '6px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#fff' };

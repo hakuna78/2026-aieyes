@@ -1,9 +1,36 @@
 import Layout from '@components/layout';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, Variants } from 'framer-motion';
 
 export default function Activities() {
   // 모달 상태 선언
   const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  const staggerContainer: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+  };
+
+  // 갤러리 슬라이더 상태
+  const studyPhotos = [1, 2, 3, 4]; // 임시 빈칸 4장
+  const expoPhotos = [1, 2, 3, 4, 5]; // 임시 빈칸 5장
+  const [studyIdx, setStudyIdx] = useState(0);
+  const [expoIdx, setExpoIdx] = useState(0);
+
+  useEffect(() => {
+    const timer1 = setInterval(() => {
+      setStudyIdx((prev) => (prev + 1) % studyPhotos.length);
+    }, 4000);
+    const timer2 = setInterval(() => {
+      setExpoIdx((prev) => (prev + 1) % expoPhotos.length);
+    }, 4000);
+    return () => { clearInterval(timer1); clearInterval(timer2); };
+  }, [studyPhotos.length, expoPhotos.length]);
 
   const teams = [
     { 
@@ -46,11 +73,17 @@ export default function Activities() {
 
 
         {/* 활동 자료 (포스터 그리드) */}
-        <section style={sectionWrapperStyle}>
-          <h2 style={sectionLabelStyle}>📌 프로젝트 자료</h2>
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          style={sectionWrapperStyle}
+        >
+          <motion.h2 variants={fadeInUp} style={sectionLabelStyle}>프로젝트 자료</motion.h2>
           <div style={gridContainerStyle}>
             {teams.map((team, idx) => (
-              <div key={idx} style={teamCardStyle}>
+              <motion.div variants={fadeInUp} key={idx} style={teamCardStyle}>
                 <div style={teamTextWrapper}>
                   <h3 style={teamNameStyle}>{team.name}</h3>
                   <p style={teamTitleStyle}>[ {team.title} ]</p>
@@ -75,27 +108,61 @@ export default function Activities() {
                 </a>
                 ) : (
                   <div style = {{height: '21px'}}/> )}
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
       </div>
 
-      {/* 포스터 */}
-      <section style={sectionWrapperStyle}>
-          <h2 style={sectionLabelStyle}>📌 정규 스터디 활동</h2>
-          <div style={mainSectionStyle}>
-            <img src="/스터디.jpg" alt="정규스터디" style={mainImageStyle} />
+        {/* 정규 스터디 활동 슬라이더 */}
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          style={sectionWrapperStyle}
+        >
+          <h2 style={sectionLabelStyle}>정규 스터디 활동</h2>
+          <div style={sliderFrameStyle}>
+            <div style={{ ...sliderTrackStyle, transform: `translateX(-${studyIdx * 100}%)` }}>
+              {studyPhotos.map((item, idx) => (
+                <div key={`study-${item}`} style={slideItemStyle}>
+                  <div style={emptyImagePlaceholder}>사진 {idx + 1} (추가 예정)</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+          <div style={dotContainerStyle}>
+            {studyPhotos.map((_, idx) => (
+              <div key={`study-dot-${idx}`} onClick={() => setStudyIdx(idx)} style={{ ...dotStyle, backgroundColor: studyIdx === idx ? '#fff' : 'rgba(255,255,255,0.3)' }} />
+            ))}
+          </div>
+        </motion.section>
 
-        {/* 학술 박람회 */}
-        <section style={sectionWrapperStyle}>
-          <h2 style={sectionLabelStyle}>📌 학술 박람회</h2>
-          <div style={mainSectionStyle}>
-            <img src="/단체.png" alt="학술 박람회" style={mainImageStyle} />
+        {/* 학술 박람회 슬라이더 */}
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          style={sectionWrapperStyle}
+        >
+          <h2 style={sectionLabelStyle}>학술 박람회</h2>
+          <div style={sliderFrameStyle}>
+            <div style={{ ...sliderTrackStyle, transform: `translateX(-${expoIdx * 100}%)` }}>
+              {expoPhotos.map((item, idx) => (
+                <div key={`expo-${item}`} style={slideItemStyle}>
+                  <div style={emptyImagePlaceholder}>사진 {idx + 1} (추가 예정)</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+          <div style={dotContainerStyle}>
+            {expoPhotos.map((_, idx) => (
+              <div key={`expo-dot-${idx}`} onClick={() => setExpoIdx(idx)} style={{ ...dotStyle, backgroundColor: expoIdx === idx ? '#fff' : 'rgba(255,255,255,0.3)' }} />
+            ))}
+          </div>
+        </motion.section>
 
       {/* 모달 섹션 */}
       {selectedPoster && (
@@ -126,13 +193,39 @@ const subtitleStyle: React.CSSProperties = { fontSize: '1.1rem', opacity: 0.7 };
 const sectionWrapperStyle: React.CSSProperties = { width: '100%', maxWidth: '1100px', marginBottom: '100px', margin:'0 auto 100px auto' };
 const sectionLabelStyle: React.CSSProperties = { fontSize: '1.5rem', fontWeight: '700', marginBottom: '25px', color: '#fff' };
 
-const mainSectionStyle: React.CSSProperties = {
-  width: '100%', height: '400px', borderRadius: '24px', overflow: 'hidden',
-  border: '1px solid rgba(255,255,255,0.1)', backgroundColor: '#111', marginBottom: '20px',
-  display:'flex', justifyContent:'center', alignItems:'center', margin:"0 auto"
+// 슬라이더 스타일
+const sliderFrameStyle: React.CSSProperties = {
+  width: '100%', height: '500px', margin: '0 auto',
+  borderRadius: '24px', overflow: 'hidden', position: 'relative',
+  border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  backdropFilter: 'blur(8px)',
 };
 
-const mainImageStyle: React.CSSProperties = { width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8, display:'flex', justifyContent:'center', alignItems:'center' };
+const sliderTrackStyle: React.CSSProperties = {
+  display: 'flex', width: '100%', height: '100%',
+  transition: 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)',
+};
+
+const slideItemStyle: React.CSSProperties = {
+  flex: '0 0 100%', height: '100%',
+  display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '15px', boxSizing: 'border-box'
+};
+
+const emptyImagePlaceholder: React.CSSProperties = {
+  width: '100%', height: '100%', borderRadius: '16px',
+  background: 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))',
+  display: 'flex', justifyContent: 'center', alignItems: 'center',
+  color: 'rgba(255,255,255,0.3)', fontSize: '1.2rem', fontWeight: 'bold',
+  border: '1px solid rgba(255,255,255,0.05)'
+};
+
+const dotContainerStyle: React.CSSProperties = {
+  display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '25px'
+};
+
+const dotStyle: React.CSSProperties = {
+  width: '10px', height: '10px', borderRadius: '50%', cursor: 'pointer', transition: '0.3s'
+};
 
 const gridContainerStyle: React.CSSProperties = {
   display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -145,7 +238,7 @@ const teamNameStyle: React.CSSProperties = { fontSize: '1.2rem', fontWeight: '70
 const teamTitleStyle: React.CSSProperties = { fontSize: '0.9rem', opacity: 0.6, margin: 0 };
 
 const posterBoxStyle: React.CSSProperties = {
-  width: '100%', aspectRatio: '1 / 1.414', backgroundColor: '#fff',
+  width: '100%', aspectRatio: '1 / 1.414', backgroundColor: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(8px)',
   borderRadius: '12px', overflow: 'hidden', position: 'relative',
   cursor: 'pointer', border: '1px solid rgba(255,255,255,0.2)'
 };

@@ -98,7 +98,7 @@ const titleStyle: React.CSSProperties = { fontSize: '44px', fontWeight: '700', m
 const faqListStyle: React.CSSProperties = { width: '100%', maxWidth: '900px', display: 'flex', flexDirection: 'column', gap: '20px' };
 
 const faqItemStyle: React.CSSProperties = {
-  backgroundColor: '#111', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)',
+  backgroundColor: 'rgba(255, 255, 255, 0.05)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)',
   overflow: 'hidden', transition: 'all 0.3s ease'
 };
 
@@ -113,7 +113,7 @@ const questionTextStyle: React.CSSProperties = { fontSize: '1rem', fontWeight: '
 const arrowStyle: React.CSSProperties = { fontSize: '12px', opacity: 0.5, transition: 'transform 0.3s ease' };
 
 const answerBoxStyle: React.CSSProperties = {
-  backgroundColor: '#1a1a1a', borderTop: '1px solid rgba(255,255,255,0.05)',
+  backgroundColor: 'rgba(255, 255, 255, 0.02)', borderTop: '1px solid rgba(255,255,255,0.05)',
   overflow: 'hidden', transition: 'all 0.3s ease-in-out'
 };
 
