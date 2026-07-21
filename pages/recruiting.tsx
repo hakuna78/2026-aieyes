@@ -156,9 +156,6 @@ export default function Recruiting() {
             width: max-content;
             animation: marquee 35s linear infinite;
           }
-          .marquee-track:hover {
-            animation-play-state: paused;
-          }
         `}</style>
         <header style={{ textAlign: 'center', marginBottom: '160px', marginTop: '60px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', height: '110px' }}>

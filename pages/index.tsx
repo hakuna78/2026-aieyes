@@ -18,16 +18,32 @@ const WaveBackground = () => {
     let animationFrameId: number;
     let time = 0;
 
+    const lines = 20; // 최적화를 위해 라인 수 약간 감소
+    let gradients: CanvasGradient[] = [];
+    
+    // 리렌더링마다 생성되던 그라데이션을 미리 계산
+    const updateGradients = () => {
+      gradients = [];
+      for (let i = 0; i < lines; i++) {
+        const alpha = 0.2 + (i / lines) * 0.5;
+        const gradient = ctx.createLinearGradient(0, 0, width, 0);
+        gradient.addColorStop(0, `rgba(14, 165, 233, ${alpha})`);
+        gradient.addColorStop(0.5, `rgba(104, 50, 187, ${Math.min(1, alpha * 1.5)})`);
+        gradient.addColorStop(1, `rgba(59, 130, 246, ${alpha})`);
+        gradients.push(gradient);
+      }
+    };
+    updateGradients();
+
     const render = () => {
       ctx.clearRect(0, 0, width, height);
       
-      const lines = 25;
       for (let i = 0; i < lines; i++) {
         ctx.beginPath();
         
-        for (let x = 0; x <= width; x += 15) {
+        // 렌더링 부하 감소를 위해 x 스텝을 15에서 30으로 증가
+        for (let x = 0; x <= width; x += 30) {
           const normalizedX = x / width;
-          // 부드럽게 퍼져나가는 파동
           const amplitude = height * 0.35 * Math.sin(normalizedX * Math.PI);
           
           const wave1 = Math.sin(normalizedX * 4 + time * 0.007 + i * 0.15);
@@ -39,19 +55,9 @@ const WaveBackground = () => {
           else ctx.lineTo(x, y);
         }
         
-        // 투명도(깊이감) 계산
-        const alpha = 0.2 + (i / lines) * 0.5;
-        
-        // 끊기지 않고 전체가 다 보이는 가로 색상 그라데이션
-        const gradient = ctx.createLinearGradient(0, 0, width, 0);
-        gradient.addColorStop(0, `rgba(14, 165, 233, ${alpha})`); // 좌측: 청록색
-        gradient.addColorStop(0.5, `rgba(104, 50, 187, ${Math.min(1, alpha * 1.5)})`); // 중앙: 보라색 (밝게)
-        gradient.addColorStop(1, `rgba(59, 130, 246, ${alpha})`); // 우측: 파란색
-        
-        ctx.strokeStyle = gradient;
+        ctx.strokeStyle = gradients[i];
         ctx.lineWidth = 1.6;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = 'rgba(104, 50, 187, 0.8)';
+        // 성능 저하의 주 원인인 shadowBlur 제거
         ctx.stroke();
       }
 
@@ -64,6 +70,7 @@ const WaveBackground = () => {
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      updateGradients();
     };
 
     window.addEventListener('resize', handleResize);
@@ -79,10 +86,10 @@ const WaveBackground = () => {
 export default function Conf() {
   const router = useRouter();
   const carouselItems = [
-    { title: "Project & Research", desc: "사회 문제를 정의하고 솔루션을 설계하는 실전 AI 프로젝트", img: "" },
-    { title: "Regular Study", desc: "관심 분야별 심도 있는 스터디와 인사이트를 공유하는 정기 세션", img: "" },
-    { title: "Academic Fair", desc: "학회원들과 함께 완성한 모델과 프로토타입 전시 및 네트워킹", img: "" },
-    { title: "Ideathon", desc: "기획력 강화를 위한 리버스 피칭과 팀 빌딩 해커톤", img: "" },
+    { title: "정규 스터디", desc: "관심 분야별 심도 있는 스터디와 인사이트를 공유하는 정기 세션", img: "/images/study/1.jpg", link: "/activities#study" },
+    { title: "학술 박람회", desc: "학회원들과 함께 완성한 모델과 프로토타입 전시 및 네트워킹", img: "/images/fair/10.jpg", link: "/activities#fair" },
+    { title: "아이디어톤", desc: "기획력 강화를 위한 리버스 피칭과 팀 빌딩 해커톤", img: "/images/ideathon/10.jpg", link: "/activities#ideathon" },
+    { title: "외부 컨퍼런스 교류", desc: "다양한 외부 컨퍼런스 참여를 통해 정규 활동을 넘어선 폭넓은 인사이트 습득", img: "/images/conference/3.jpg", link: "/activities#conference" },
   ];
 
   const fadeInUp: Variants = {
@@ -107,7 +114,6 @@ export default function Conf() {
       <Layout>
         {/* --- 섹션 1: 메인 히어로 --- */}
         <div style={heroContainerStyle}>
-          {/* 파란색 그물망 연속 파동 캔버스 배경 (절대 깨지지 않음) */}
           <WaveBackground />
 
           <main style={{ marginTop: '-30px', position: 'relative', zIndex: 10 }}>
@@ -154,7 +160,7 @@ export default function Conf() {
           </main>
         </div>
 
-        {/* --- 섹션 2: 활동 하이라이트 (Carousel) --- */}
+        {/* --- 섹션 2: 활동 하이라이트 --- */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -177,6 +183,58 @@ export default function Conf() {
             .marquee-track:hover {
               animation-play-state: paused;
             }
+            .carousel-card {
+              flex: 0 0 auto;
+              width: 380px;
+              height: 480px;
+              background-color: rgba(255, 255, 255, 0.04);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              border-radius: 24px;
+              padding: 40px;
+              display: flex;
+              flex-direction: column;
+              box-sizing: border-box;
+              position: relative;
+              box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0,0,0,0.3);
+              will-change: transform;
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease;
+              cursor: pointer;
+            }
+            .carousel-card:hover {
+              transform: translateY(-10px);
+              border-color: rgba(255, 255, 255, 0.3);
+            }
+            .inner-box {
+              flex: 1;
+              margin-top: 30px;
+              position: relative;
+              border-radius: 16px;
+              background: linear-gradient(135deg, rgba(104, 50, 187, 0.2), rgba(59, 130, 246, 0.1));
+              border: 1px solid rgba(255,255,255,0.05);
+              overflow: hidden; /* 내부에서 사진이 위로 올라오도록 설정 */
+            }
+            .card-arrow {
+              position: absolute;
+              bottom: 40px;
+              right: 40px;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background: rgba(255, 255, 255, 0.05);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: rgba(255, 255, 255, 0.3);
+              transition: all 0.3s ease;
+              opacity: 0;
+              transform: translateX(-10px) rotate(-45deg);
+            }
+            .carousel-card:hover .card-arrow {
+              opacity: 1;
+              transform: translateX(0) rotate(-45deg);
+              background: rgba(255, 255, 255, 0.2);
+              color: #fff;
+            }
           `}</style>
 
           <motion.div variants={fadeInUp} style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px', marginBottom: '60px' }}>
@@ -190,20 +248,25 @@ export default function Conf() {
 
           <motion.div variants={fadeInUp} className="marquee-track">
             {[...carouselItems, ...carouselItems].map((item, idx) => (
-              <div key={idx} style={carouselCardStyle}>
+              <div key={idx} className="carousel-card" onClick={() => router.push(item.link)}>
                 <div style={{ zIndex: 2, position: 'relative' }}>
                   <h3 style={{ fontSize: '28px', fontWeight: '800', margin: '0 0 10px 0', color: '#fff', letterSpacing: '-0.5px' }}>{item.title}</h3>
                   <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.5', wordBreak: 'keep-all' }}>{item.desc}</p>
                 </div>
                 
-                {item.img ? (
-                  <div style={{ flex: 1, marginTop: '30px', borderRadius: '16px', overflow: 'hidden', position: 'relative', border: '1px solid rgba(255,255,255,0.05)' }}>
-                    <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
-                  </div>
-                ) : (
-                  <div style={{ flex: 1, marginTop: '30px', borderRadius: '16px', background: 'linear-gradient(135deg, rgba(104, 50, 187, 0.2), rgba(59, 130, 246, 0.1))', border: '1px solid rgba(255,255,255,0.05)' }} />
-                )}
+                {/* 썸네일 이미지가 있으면 표시, 없으면 기본 그라데이션 */}
+                <div className="inner-box">
+                  {item.img && (
+                    <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  )}
+                </div>
+                
+                <div className="card-arrow">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
               </div>
             ))}
           </motion.div>
@@ -230,21 +293,4 @@ const btnStyle: React.CSSProperties = {
   padding: '12px 35px', background: 'rgba(255, 255, 255, 0.1)',
   border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '50px',
   color: '#fff', fontSize: '1rem', fontWeight: '500', cursor: 'pointer', transition: 'all 0.3s ease', backdropFilter: 'blur(8px)',
-};
-
-const carouselCardStyle: React.CSSProperties = {
-  flex: '0 0 auto',
-  width: '380px',
-  height: '480px',
-  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '24px',
-  padding: '40px',
-  display: 'flex',
-  flexDirection: 'column',
-  boxSizing: 'border-box',
-  overflow: 'hidden',
-  position: 'relative',
-  backdropFilter: 'saturate(180%) blur(20px)',
-  boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0,0,0,0.3)'
 };
