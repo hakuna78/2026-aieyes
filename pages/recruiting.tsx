@@ -237,7 +237,7 @@ export default function Recruiting() {
             <h2 style={{ ...sectionTitleStyle, fontSize: '36px', fontWeight: '800', marginBottom: '40px', color: '#fff', textAlign: 'center' }}>지원 자격</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               {[
-                "한국외대 Social Science & AI융합학부 1전공 혹은 이중(부)전공 학생",
+                "한국외국어대학교 재학생",
                 "최소 활동기간 1년(2026.03 ~ 2027.02)을 충족할 수 있는 분",
                 "매주 정기회의(화 18:30~20:00)를 포함해 주 2회 이상 학회 활동이 가능하신 분"
               ].map((text, idx) => (
@@ -351,10 +351,13 @@ export default function Recruiting() {
 
         {/* 지원폼은 여기에 */}
         <footer style={contactStyle}> 
-          <button style={{ ...applyButtonStyle, backgroundColor: '#222', color: '#666', cursor: 'not-allowed' }}>
+          <button 
+            onClick={() => window.open('https://forms.gle/SY32mGb8kxhNamyn7', '_blank')}
+            style={{ ...applyButtonStyle, backgroundColor: '#fff', color: '#000', cursor: 'pointer' }}
+          >
             지금 지원하기 ▶
           </button>
-          <p style={{ marginTop: '40px' , color:'rgba(255,255,255,0.4)'}}>문의처: 학회장 김지현(010-5034-9789) | 부학회장 노윤혁(010-2722-1378)</p>
+          <p style={{ marginTop: '40px' , color:'rgba(255,255,255,0.4)'}}>문의처: 학회장 민건우(010-4049-4866) | 부학회장 노윤혁(010-2722-1378)</p>
           {/* <p style={{ fontWeight: '500', marginBottom: '20px', color: 'rgba(255,255,255,0.4)' }}>공식 계정</p> */}
 
           {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
