@@ -4,28 +4,28 @@ import React, { useState } from 'react';
 // 기수별 데이터 (필요에 따라 2nd, 3rd 추가 가능)
 const membersData: any = {
   "1st Generation": [
-    { name: "강현규", dept: "Social Science & AI융합학부 24" },
-    { name: "김지현", dept: "Social Science & AI융합학부 24" },
-    { name: "김채우", dept: "Social Science & AI융합학부 24" },
-    { name: "노윤혁", dept: "Social Science & AI융합학부 24" },
-    { name: "박연후", dept: "Social Science & AI융합학부 24" },
-    { name: "이예원", dept: "Social Science & AI융합학부 24" },
-    { name: "이현우", dept: "Social Science & AI융합학부 24" },
-    { name: "장대웅", dept: "Social Science & AI융합학부 24" },
+    { name: "강현규", dept: "AI융합대학 24" },
+    { name: "김지현", dept: "AI융합대학 24" },
+    { name: "김채우", dept: "AI융합대학 24" },
+    { name: "노윤혁", dept: "AI융합대학 24" },
+    { name: "박연후", dept: "AI융합대학 24" },
+    { name: "이예원", dept: "AI융합대학 24" },
+    { name: "이현우", dept: "AI융합대학 24" },
+    { name: "장대웅", dept: "AI융합대학 24" },
   ],
   "1.5st Generation":[
-    { name: "민건우", dept: "Social Science & AI융합학부 25" },
-    { name: "채유정", dept: "Social Science & AI융합학부 25" },
-    { name: "박수연", dept: "Social Science & AI융합학부 25" }
+    { name: "민건우", dept: "AI융합대학 25" },
+    { name: "채유정", dept: "AI융합대학 25" },
+    { name: "박수연", dept: "AI융합대학 25" }
   ],
   "2nd Generation": [
-    { name: "류의태", dept: "Social Science & AI융합학부 24" },
-    { name: "류희수", dept: "Social Science & AI융합학부 25" },
-    { name: "박선우", dept: "Social Science & AI융합학부 25" },
-    { name: "이나경", dept: "Social Science & AI융합학부 24" },
-    { name: "이명진", dept: "Social Science & AI융합학부 25" },
-    { name: "윤성제", dept: "Social Science & AI융합학부 24" },
-    { name: "진미경", dept: "Social Science & AI융합학부 26" }
+    { name: "류의태", dept: "AI융합대학 24" },
+    { name: "류희수", dept: "AI융합대학 25" },
+    { name: "박선우", dept: "AI융합대학 25" },
+    { name: "이나경", dept: "AI융합대학 24" },
+    { name: "이명진", dept: "AI융합대학 25" },
+    { name: "윤성제", dept: "AI융합대학 24" },
+    { name: "진미경", dept: "AI융합대학 26" }
   ]
 };
 
